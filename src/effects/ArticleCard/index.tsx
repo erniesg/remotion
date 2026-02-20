@@ -188,8 +188,8 @@ const CardRenderer: React.FC<{
   );
 
   const cardTop = card.y * frameHeight;
-  const autoHeight = !card.height || card.height === 0;
-  const maxHeightPx = card.maxHeight * frameHeight;
+  const bottomMargin = card.marginX;
+  const maxHeightPx = frameHeight - cardTop - bottomMargin;
 
   const titleSize = card.titleSize;
   const bodySize = card.bodySize;
@@ -202,9 +202,7 @@ const CardRenderer: React.FC<{
         left: card.marginX,
         right: card.marginX,
         top: cardTop,
-        ...(autoHeight
-          ? { maxHeight: maxHeightPx }
-          : { height: card.height * frameHeight }),
+        maxHeight: maxHeightPx,
         transform: finalTransform,
         opacity: finalOpacity,
         zIndex: 10,
@@ -214,7 +212,6 @@ const CardRenderer: React.FC<{
       <div
         style={{
           width: "100%",
-          ...(autoHeight ? {} : { height: "100%" }),
           backgroundColor: "rgba(255, 255, 255, 0.95)",
           borderRadius: 16,
           padding: "20px 24px",

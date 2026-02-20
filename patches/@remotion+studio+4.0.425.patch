@@ -1,0 +1,197 @@
+diff --git a/node_modules/@remotion/studio/dist/components/RenderModal/SchemaEditor/ZodNumberEditor.js b/node_modules/@remotion/studio/dist/components/RenderModal/SchemaEditor/ZodNumberEditor.js
+index cca621c..4b16266 100644
+--- a/node_modules/@remotion/studio/dist/components/RenderModal/SchemaEditor/ZodNumberEditor.js
++++ b/node_modules/@remotion/studio/dist/components/RenderModal/SchemaEditor/ZodNumberEditor.js
+@@ -64,9 +64,20 @@ const ZodNumberEditor = ({ jsonPath, value, schema, setValue, onSave, defaultVal
+     const save = (0, react_1.useCallback)(() => {
+         onSave(() => value, false, false);
+     }, [onSave, value]);
++    const minVal = getMinValue(schema);
++    const maxVal = getMaxValue(schema);
++    const stepVal = getStep(schema);
++    const hasFiniteRange = Number.isFinite(minVal) && Number.isFinite(maxVal);
++    const onSliderChange = (0, react_1.useCallback)((e) => {
++        setLocalValue(() => Number(e.target.value), false, false);
++    }, [setLocalValue]);
+     return (jsx_runtime_1.jsxs(Fieldset_1.Fieldset, { shouldPad: mayPad, success: localValue.zodValidation.success, children: [
+             jsx_runtime_1.jsx(SchemaLabel_1.SchemaLabel, { handleClick: null, isDefaultValue: isDefault, jsonPath: jsonPath, onReset: reset, onSave: save, showSaveButton: showSaveButton, onRemove: onRemove, saving: saving, valid: localValue.zodValidation.success, saveDisabledByParent: saveDisabledByParent, suffix: null }), jsx_runtime_1.jsxs("div", { style: fullWidth, children: [
+-                    jsx_runtime_1.jsx(InputDragger_1.InputDragger, { type: 'number', value: localValue.value, style: fullWidth, status: localValue.zodValidation.success ? 'ok' : 'error', placeholder: jsonPath.join('.'), onTextChange: onTextChange, onValueChange: onNumberChange, min: getMinValue(schema), max: getMaxValue(schema), step: getStep(schema), rightAlign: false }), jsx_runtime_1.jsx(ZodFieldValidation_1.ZodFieldValidation, { path: jsonPath, localValue: localValue })
++                    hasFiniteRange ? jsx_runtime_1.jsxs("div", { style: { display: 'flex', alignItems: 'center', gap: 8, width: '100%' }, children: [
++                        jsx_runtime_1.jsx("input", { type: 'range', min: minVal, max: maxVal, step: stepVal || (maxVal - minVal) / 100, value: localValue.value, onChange: onSliderChange, style: { flex: 1, cursor: 'pointer' } }),
++                        jsx_runtime_1.jsx("span", { style: { fontVariantNumeric: 'tabular-nums', fontSize: 13, color: '#aaa', minWidth: 48, textAlign: 'right' }, children: localValue.value })
++                    ] }) : jsx_runtime_1.jsx(InputDragger_1.InputDragger, { type: 'number', value: localValue.value, style: fullWidth, status: localValue.zodValidation.success ? 'ok' : 'error', placeholder: jsonPath.join('.'), onTextChange: onTextChange, onValueChange: onNumberChange, min: minVal, max: maxVal, step: stepVal, rightAlign: false }),
++                    jsx_runtime_1.jsx(ZodFieldValidation_1.ZodFieldValidation, { path: jsonPath, localValue: localValue })
+                 ] })
+         ] }));
+ };
+diff --git a/node_modules/@remotion/studio/dist/esm/chunk-5wcqz8k8.js b/node_modules/@remotion/studio/dist/esm/chunk-5wcqz8k8.js
+index 20eb5e3..b8e2495 100644
+--- a/node_modules/@remotion/studio/dist/esm/chunk-5wcqz8k8.js
++++ b/node_modules/@remotion/studio/dist/esm/chunk-5wcqz8k8.js
+@@ -14430,6 +14430,13 @@ var ZodNumberEditor = ({
+   const save = useCallback62(() => {
+     onSave(() => value, false, false);
+   }, [onSave, value]);
++  const minVal = getMinValue(schema);
++  const maxVal = getMaxValue(schema);
++  const stepVal = getStep(schema);
++  const hasFiniteRange = Number.isFinite(minVal) && Number.isFinite(maxVal);
++  const onSliderChange = useCallback62((e) => {
++    setLocalValue(() => Number(e.target.value), false, false);
++  }, [setLocalValue]);
+   return /* @__PURE__ */ jsxs66(Fieldset, {
+     shouldPad: mayPad,
+     success: localValue.zodValidation.success,
+@@ -14450,7 +14457,24 @@ var ZodNumberEditor = ({
+       /* @__PURE__ */ jsxs66("div", {
+         style: fullWidth6,
+         children: [
+-          /* @__PURE__ */ jsx131(InputDragger, {
++          hasFiniteRange ? /* @__PURE__ */ jsxs66("div", {
++            style: { display: "flex", alignItems: "center", gap: 8, width: "100%" },
++            children: [
++              /* @__PURE__ */ jsx131("input", {
++                type: "range",
++                min: minVal,
++                max: maxVal,
++                step: stepVal || (maxVal - minVal) / 100,
++                value: localValue.value,
++                onChange: onSliderChange,
++                style: { flex: 1, cursor: "pointer" }
++              }),
++              /* @__PURE__ */ jsx131("span", {
++                style: { fontVariantNumeric: "tabular-nums", fontSize: 13, color: "#aaa", minWidth: 48, textAlign: "right" },
++                children: localValue.value
++              })
++            ]
++          }) : /* @__PURE__ */ jsx131(InputDragger, {
+             type: "number",
+             value: localValue.value,
+             style: fullWidth6,
+@@ -14458,9 +14482,9 @@ var ZodNumberEditor = ({
+             placeholder: jsonPath.join("."),
+             onTextChange,
+             onValueChange: onNumberChange,
+-            min: getMinValue(schema),
+-            max: getMaxValue(schema),
+-            step: getStep(schema),
++            min: minVal,
++            max: maxVal,
++            step: stepVal,
+             rightAlign: false
+           }),
+           /* @__PURE__ */ jsx131(ZodFieldValidation, {
+diff --git a/node_modules/@remotion/studio/dist/esm/internals.mjs b/node_modules/@remotion/studio/dist/esm/internals.mjs
+index b80cffc..421f1aa 100644
+--- a/node_modules/@remotion/studio/dist/esm/internals.mjs
++++ b/node_modules/@remotion/studio/dist/esm/internals.mjs
+@@ -14449,6 +14449,13 @@ var ZodNumberEditor = ({
+   const save = useCallback62(() => {
+     onSave(() => value, false, false);
+   }, [onSave, value]);
++  const minVal = getMinValue(schema);
++  const maxVal = getMaxValue(schema);
++  const stepVal = getStep(schema);
++  const hasFiniteRange = Number.isFinite(minVal) && Number.isFinite(maxVal);
++  const onSliderChange = useCallback62((e) => {
++    setLocalValue(() => Number(e.target.value), false, false);
++  }, [setLocalValue]);
+   return /* @__PURE__ */ jsxs66(Fieldset, {
+     shouldPad: mayPad,
+     success: localValue.zodValidation.success,
+@@ -14469,7 +14476,24 @@ var ZodNumberEditor = ({
+       /* @__PURE__ */ jsxs66("div", {
+         style: fullWidth6,
+         children: [
+-          /* @__PURE__ */ jsx131(InputDragger, {
++          hasFiniteRange ? /* @__PURE__ */ jsxs66("div", {
++            style: { display: "flex", alignItems: "center", gap: 8, width: "100%" },
++            children: [
++              /* @__PURE__ */ jsx131("input", {
++                type: "range",
++                min: minVal,
++                max: maxVal,
++                step: stepVal || (maxVal - minVal) / 100,
++                value: localValue.value,
++                onChange: onSliderChange,
++                style: { flex: 1, cursor: "pointer" }
++              }),
++              /* @__PURE__ */ jsx131("span", {
++                style: { fontVariantNumeric: "tabular-nums", fontSize: 13, color: "#aaa", minWidth: 48, textAlign: "right" },
++                children: localValue.value
++              })
++            ]
++          }) : /* @__PURE__ */ jsx131(InputDragger, {
+             type: "number",
+             value: localValue.value,
+             style: fullWidth6,
+@@ -14477,9 +14501,9 @@ var ZodNumberEditor = ({
+             placeholder: jsonPath.join("."),
+             onTextChange,
+             onValueChange: onNumberChange,
+-            min: getMinValue(schema),
+-            max: getMaxValue(schema),
+-            step: getStep(schema),
++            min: minVal,
++            max: maxVal,
++            step: stepVal,
+             rightAlign: false
+           }),
+           /* @__PURE__ */ jsx131(ZodFieldValidation, {
+diff --git a/node_modules/@remotion/studio/dist/esm/previewEntry.mjs b/node_modules/@remotion/studio/dist/esm/previewEntry.mjs
+index 9c55de0..a5b8a4a 100644
+--- a/node_modules/@remotion/studio/dist/esm/previewEntry.mjs
++++ b/node_modules/@remotion/studio/dist/esm/previewEntry.mjs
+@@ -14729,6 +14729,13 @@ var ZodNumberEditor = ({
+   const save = useCallback63(() => {
+     onSave(() => value, false, false);
+   }, [onSave, value]);
++  const minVal = getMinValue(schema);
++  const maxVal = getMaxValue(schema);
++  const stepVal = getStep(schema);
++  const hasFiniteRange = Number.isFinite(minVal) && Number.isFinite(maxVal);
++  const onSliderChange = useCallback63((e) => {
++    setLocalValue(() => Number(e.target.value), false, false);
++  }, [setLocalValue]);
+   return /* @__PURE__ */ jsxs66(Fieldset, {
+     shouldPad: mayPad,
+     success: localValue.zodValidation.success,
+@@ -14749,7 +14756,24 @@ var ZodNumberEditor = ({
+       /* @__PURE__ */ jsxs66("div", {
+         style: fullWidth6,
+         children: [
+-          /* @__PURE__ */ jsx132(InputDragger, {
++          hasFiniteRange ? /* @__PURE__ */ jsxs66("div", {
++            style: { display: "flex", alignItems: "center", gap: 8, width: "100%" },
++            children: [
++              /* @__PURE__ */ jsx132("input", {
++                type: "range",
++                min: minVal,
++                max: maxVal,
++                step: stepVal || (maxVal - minVal) / 100,
++                value: localValue.value,
++                onChange: onSliderChange,
++                style: { flex: 1, cursor: "pointer" }
++              }),
++              /* @__PURE__ */ jsx132("span", {
++                style: { fontVariantNumeric: "tabular-nums", fontSize: 13, color: "#aaa", minWidth: 48, textAlign: "right" },
++                children: localValue.value
++              })
++            ]
++          }) : /* @__PURE__ */ jsx132(InputDragger, {
+             type: "number",
+             value: localValue.value,
+             style: fullWidth6,
+@@ -14757,9 +14781,9 @@ var ZodNumberEditor = ({
+             placeholder: jsonPath.join("."),
+             onTextChange,
+             onValueChange: onNumberChange,
+-            min: getMinValue(schema),
+-            max: getMaxValue(schema),
+-            step: getStep(schema),
++            min: minVal,
++            max: maxVal,
++            step: stepVal,
+             rightAlign: false
+           }),
+           /* @__PURE__ */ jsx132(ZodFieldValidation, {

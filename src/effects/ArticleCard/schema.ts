@@ -30,8 +30,8 @@ export const ArticleCardSchema = z.object({
   imageSrc: z.string().optional(),
 
   // --- Timing ---
-  startMs: z.number(),
-  endMs: z.number(),
+  startMs: z.number().min(0).max(120000).multipleOf(100),
+  endMs: z.number().min(0).max(120000).multipleOf(100),
 
   // --- Card animation ---
   enterAnimation: z
@@ -43,18 +43,14 @@ export const ArticleCardSchema = z.object({
 
   // --- Position & sizing ---
   /** Top edge as fraction of frame height (0–1). */
-  y: z.number().default(0.45),
-  /** Card height as fraction of frame height. Omit or 0 for auto-height. */
-  height: z.number().default(0),
-  /** Max height as fraction (only used in auto-height mode). */
-  maxHeight: z.number().default(0.55),
+  y: z.number().min(0).max(1).multipleOf(0.01).default(0.45),
   /** Horizontal margin in px. */
-  marginX: z.number().default(24),
+  marginX: z.number().min(0).max(100).multipleOf(1).default(24),
 
   // --- Typography (px) ---
-  titleSize: z.number().default(30),
-  bodySize: z.number().default(26),
-  sourceSize: z.number().default(18),
+  titleSize: z.number().min(12).max(60).multipleOf(1).default(30),
+  bodySize: z.number().min(10).max(48).multipleOf(1).default(26),
+  sourceSize: z.number().min(10).max(36).multipleOf(1).default(18),
 
   // --- Highlights (text mode only) ---
   highlights: z.array(HighlightSchema).default([]),
