@@ -20,97 +20,22 @@ const transcript = JSON.parse(fs.readFileSync(transcriptPath, "utf-8"));
 const ocr = JSON.parse(fs.readFileSync(ocrPath, "utf-8"));
 
 // AI-generated annotations (Tool 3 output)
+// "FATAL" spoken at 540-800ms, subtitle visible ~0-800ms
+// "CAR" spoken at 4120-4360ms
 const annotations = [
-  // --- "FATAL": 3 emojis staggered entry, different positions ---
-  {
-    emoji: "💀",
-    anchorWord: "FATAL",
-    position: "above",
-    animation: "pop",
-    exitAnimation: "shrink",
-    scale: 1.2,
-    offsetX: 0,
-    offsetY: 0,
-    triggerOffsetMs: -200,
-    delayMs: 0,
-  },
-  {
-    emoji: "😱",
-    anchorWord: "FATAL",
-    position: "above-left",
-    animation: "bounce",
-    exitAnimation: "fly-up",
-    scale: 0.9,
-    offsetX: 0,
-    offsetY: 0,
-    triggerOffsetMs: -200,
-    delayMs: 100, // 100ms after first emoji
-  },
-  {
-    emoji: "🚨",
-    anchorWord: "FATAL",
-    position: "above-right",
-    animation: "spin",
-    exitAnimation: "fade",
-    scale: 0.8,
-    offsetX: 0,
-    offsetY: 0,
-    triggerOffsetMs: -200,
-    delayMs: 200, // 200ms after first emoji
-  },
+  // --- "FATAL": 3 emojis, staggered start ---
+  { emoji: "💀", anchorWord: "FATAL", position: "above",       animation: "pop",    exitAnimation: "shrink", scale: 1.2, startMs: 340, endMs: 800 },
+  { emoji: "😱", anchorWord: "FATAL", position: "above-left",  animation: "bounce", exitAnimation: "fly-up", scale: 0.9, startMs: 440, endMs: 800 },
+  { emoji: "🚨", anchorWord: "FATAL", position: "above-right", animation: "spin",   exitAnimation: "fade",   scale: 0.8, startMs: 540, endMs: 800 },
+
   // --- "CAR": 2 emojis ---
-  {
-    emoji: "🚗",
-    anchorWord: "CAR",
-    position: "above",
-    animation: "drop",
-    exitAnimation: "fly-up",
-    scale: 1,
-    offsetX: 0,
-    offsetY: 0,
-  },
-  {
-    emoji: "💨",
-    anchorWord: "CAR",
-    position: "above-right",
-    animation: "slide-up",
-    exitAnimation: "fade",
-    scale: 0.8,
-    offsetX: 0,
-    offsetY: 0,
-    delayMs: 120,
-  },
-  // --- single emojis ---
-  {
-    emoji: "⚡",
-    anchorWord: "INSTANTLY",
-    position: "above",
-    animation: "wiggle",
-    exitAnimation: "pop-out",
-    scale: 1.1,
-    offsetX: 0,
-    offsetY: 0,
-  },
-  {
-    emoji: "⚖️",
-    anchorWord: "WEIGHT",
-    position: "above",
-    animation: "slide-up",
-    exitAnimation: "shrink",
-    scale: 1.2,
-    offsetX: 0,
-    offsetY: 0,
-  },
-  {
-    emoji: "👶",
-    anchorWord: "CHILD",
-    position: "above",
-    animation: "float",
-    exitAnimation: "fly-down",
-    scale: 1,
-    offsetX: 0,
-    offsetY: 0,
-  },
+  { emoji: "🚗", anchorWord: "CAR", position: "above",       animation: "drop",     exitAnimation: "fly-up", scale: 1 },
+  { emoji: "💨", anchorWord: "CAR", position: "above-right", animation: "slide-up", exitAnimation: "fade",   scale: 0.8, startMs: 4240, durationMs: 200 },
+
+  // --- singles: auto-timed from transcript ---
+  { emoji: "⚡",  anchorWord: "INSTANTLY", position: "above", animation: "wiggle",   exitAnimation: "pop-out", scale: 1.1 },
+  { emoji: "⚖️", anchorWord: "WEIGHT",    position: "above", animation: "slide-up", exitAnimation: "shrink",  scale: 1.2 },
+  { emoji: "👶",  anchorWord: "CHILD",     position: "above", animation: "float",    exitAnimation: "fly-down", scale: 1 },
 ];
 
 const props = {

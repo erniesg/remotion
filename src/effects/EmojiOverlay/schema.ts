@@ -68,12 +68,12 @@ export const EmojiAnnotationSchema = z.object({
   scale: z.number().default(1),
   offsetX: z.number().default(0),
   offsetY: z.number().default(0),
-  /** ms offset from word start for entrance (negative = before word spoken) */
-  triggerOffsetMs: z.number().default(0),
-  /** ms offset from word end for exit (positive = linger after word) */
-  exitOffsetMs: z.number().default(0),
-  /** delay in ms from trigger for staggering multiple emojis */
-  delayMs: z.number().default(0),
+  /** When the emoji appears (ms). If omitted, derived from anchorWord transcript timing. */
+  startMs: z.number().optional(),
+  /** When the emoji exits (ms). If omitted, derived from subtitle group end. */
+  endMs: z.number().optional(),
+  /** Alternative to endMs: how long the emoji stays (ms). */
+  durationMs: z.number().optional(),
 });
 
 /** Full props for the EmojiOverlay composition */

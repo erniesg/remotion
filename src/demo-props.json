@@ -21799,10 +21799,8 @@
       "animation": "pop",
       "exitAnimation": "shrink",
       "scale": 1.2,
-      "offsetX": 0,
-      "offsetY": 0,
-      "triggerOffsetMs": -200,
-      "delayMs": 0
+      "startMs": 340,
+      "endMs": 800
     },
     {
       "emoji": "😱",
@@ -21811,10 +21809,8 @@
       "animation": "bounce",
       "exitAnimation": "fly-up",
       "scale": 0.9,
-      "offsetX": 0,
-      "offsetY": 0,
-      "triggerOffsetMs": -200,
-      "delayMs": 100
+      "startMs": 440,
+      "endMs": 800
     },
     {
       "emoji": "🚨",
@@ -21823,10 +21819,8 @@
       "animation": "spin",
       "exitAnimation": "fade",
       "scale": 0.8,
-      "offsetX": 0,
-      "offsetY": 0,
-      "triggerOffsetMs": -200,
-      "delayMs": 200
+      "startMs": 540,
+      "endMs": 800
     },
     {
       "emoji": "🚗",
@@ -21834,9 +21828,7 @@
       "position": "above",
       "animation": "drop",
       "exitAnimation": "fly-up",
-      "scale": 1,
-      "offsetX": 0,
-      "offsetY": 0
+      "scale": 1
     },
     {
       "emoji": "💨",
@@ -21845,9 +21837,8 @@
       "animation": "slide-up",
       "exitAnimation": "fade",
       "scale": 0.8,
-      "offsetX": 0,
-      "offsetY": 0,
-      "delayMs": 120
+      "startMs": 4240,
+      "durationMs": 200
     },
     {
       "emoji": "⚡",
@@ -21855,9 +21846,7 @@
       "position": "above",
       "animation": "wiggle",
       "exitAnimation": "pop-out",
-      "scale": 1.1,
-      "offsetX": 0,
-      "offsetY": 0
+      "scale": 1.1
     },
     {
       "emoji": "⚖️",
@@ -21865,9 +21854,7 @@
       "position": "above",
       "animation": "slide-up",
       "exitAnimation": "shrink",
-      "scale": 1.2,
-      "offsetX": 0,
-      "offsetY": 0
+      "scale": 1.2
     },
     {
       "emoji": "👶",
@@ -21875,9 +21862,7 @@
       "position": "above",
       "animation": "float",
       "exitAnimation": "fly-down",
-      "scale": 1,
-      "offsetX": 0,
-      "offsetY": 0
+      "scale": 1
     }
   ],
   "fps": 25

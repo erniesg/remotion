@@ -161,30 +161,27 @@ function resolveEmojiPlacement(
     emojiSize,
   );
 
-  // --- Trigger timing ---
-  const delayMs = annotation.delayMs ?? 0;
-  const triggerOffsetMs = annotation.triggerOffsetMs ?? 0;
-  const triggerTimeSec = (caption.startMs + triggerOffsetMs + delayMs) / 1000;
-  const triggerFrame = Math.round(triggerTimeSec * fps);
+  // --- Timing ---
+  // Use explicit startMs/endMs if provided, otherwise derive from transcript + OCR.
+  const startMs = annotation.startMs ?? caption.startMs;
+  const triggerFrame = Math.round((startMs / 1000) * fps);
 
-  // --- Exit timing ---
-  // Use subtitle GROUP end from OCR (when the text chunk changes),
-  // not just the single word's caption end.
-  const subtitleGroupEndSec = findSubtitleGroupEnd(
-    ocrFrames,
-    annotation.anchorWord,
-    wordPos.w,
-    wordPos.h,
-    caption.startMs / 1000,
-  );
-
-  // Exit = later of (subtitle group end) or (word caption end), plus buffer
-  const exitOffsetSec = (annotation.exitOffsetMs ?? 0) / 1000;
-  const captionEndSec = caption.endMs / 1000;
-  const baseExitSec = Math.max(subtitleGroupEndSec + 0.1, captionEndSec);
-  const exitTimeSec = baseExitSec + exitOffsetSec;
-
-  const exitFrame = Math.round(exitTimeSec * fps);
+  let endMs: number;
+  if (annotation.endMs != null) {
+    endMs = annotation.endMs;
+  } else if (annotation.durationMs != null) {
+    endMs = startMs + annotation.durationMs;
+  } else {
+    // Auto: use subtitle group end from OCR
+    const subtitleGroupEndSec = findSubtitleGroupEnd(
+      ocrFrames, annotation.anchorWord,
+      wordPos.w, wordPos.h,
+      caption.startMs / 1000,
+    );
+    const captionEndSec = caption.endMs / 1000;
+    endMs = Math.max(subtitleGroupEndSec + 0.1, captionEndSec) * 1000;
+  }
+  const exitFrame = Math.round((endMs / 1000) * fps);
 
   return {
     x: wordPos.x + dx + annotation.offsetX,
