@@ -1,0 +1,9 @@
+node_modules/
+.venv/
+whisper.cpp/
+.tmp/
+out/
+dist/
+*.wav
+.DS_Store
+public/*.mp4

@@ -1,0 +1,32 @@
+{
+  "name": "remotion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx remotion studio",
+    "build": "npx remotion render src/index.ts MyComp out/video.mp4",
+    "preview": "npx remotion preview src/index.ts",
+    "transcribe": "npx tsx scripts/transcribe.ts",
+    "ocr": "source .venv/bin/activate && PADDLE_PDX_DISABLE_MODEL_SOURCE_CHECK=True python scripts/ocr_frame.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@remotion/bundler": "4.0.425",
+    "@remotion/cli": "4.0.425",
+    "@remotion/install-whisper-cpp": "4.0.425",
+    "@remotion/layout-utils": "4.0.425",
+    "@remotion/media-utils": "4.0.425",
+    "@remotion/player": "4.0.425",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.425",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "zod": "3.22.3"
+  }
+}
