@@ -21801,22 +21801,60 @@
       "scale": 1.2,
       "offsetX": 0,
       "offsetY": 0,
-      "triggerOffsetMs": -200
+      "triggerOffsetMs": -200,
+      "delayMs": 0
+    },
+    {
+      "emoji": "😱",
+      "anchorWord": "FATAL",
+      "position": "above-left",
+      "animation": "bounce",
+      "exitAnimation": "fly-up",
+      "scale": 0.9,
+      "offsetX": 0,
+      "offsetY": 0,
+      "triggerOffsetMs": -200,
+      "delayMs": 100
+    },
+    {
+      "emoji": "🚨",
+      "anchorWord": "FATAL",
+      "position": "above-right",
+      "animation": "spin",
+      "exitAnimation": "fade",
+      "scale": 0.8,
+      "offsetX": 0,
+      "offsetY": 0,
+      "triggerOffsetMs": -200,
+      "delayMs": 200
     },
     {
       "emoji": "🚗",
       "anchorWord": "CAR",
       "position": "above",
-      "animation": "bounce",
+      "animation": "drop",
+      "exitAnimation": "fly-up",
       "scale": 1,
       "offsetX": 0,
       "offsetY": 0
+    },
+    {
+      "emoji": "💨",
+      "anchorWord": "CAR",
+      "position": "above-right",
+      "animation": "slide-up",
+      "exitAnimation": "fade",
+      "scale": 0.8,
+      "offsetX": 0,
+      "offsetY": 0,
+      "delayMs": 120
     },
     {
       "emoji": "⚡",
       "anchorWord": "INSTANTLY",
       "position": "above",
       "animation": "wiggle",
+      "exitAnimation": "pop-out",
       "scale": 1.1,
       "offsetX": 0,
       "offsetY": 0
@@ -21826,6 +21864,7 @@
       "anchorWord": "WEIGHT",
       "position": "above",
       "animation": "slide-up",
+      "exitAnimation": "shrink",
       "scale": 1.2,
       "offsetX": 0,
       "offsetY": 0
@@ -21834,7 +21873,8 @@
       "emoji": "👶",
       "anchorWord": "CHILD",
       "position": "above",
-      "animation": "pop",
+      "animation": "float",
+      "exitAnimation": "fly-down",
       "scale": 1,
       "offsetX": 0,
       "offsetY": 0
