@@ -184,8 +184,8 @@ function resolveEmojiPlacement(
   const exitFrame = Math.round((endMs / 1000) * fps);
 
   return {
-    x: wordPos.x + dx + annotation.offsetX,
-    y: wordPos.y + dy + annotation.offsetY,
+    x: wordPos.x + dx + (annotation.offsetX ?? 0),
+    y: wordPos.y + dy + (annotation.offsetY ?? 0),
     triggerFrame,
     exitFrame,
     emojiSize,

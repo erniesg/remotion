@@ -13,3 +13,17 @@ export type {
   OcrFrame,
   WordPosition,
 } from "./EmojiOverlay/schema";
+
+export { ArticleCardOverlay } from "./ArticleCard";
+export {
+  ArticleCardOverlaySchema,
+  ArticleCardSchema,
+  HighlightSchema,
+  ArticleSourceSchema,
+} from "./ArticleCard/schema";
+export type {
+  ArticleCardOverlayProps,
+  ArticleCard,
+  Highlight,
+  ArticleSource,
+} from "./ArticleCard/schema";
