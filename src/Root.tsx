@@ -1,6 +1,5 @@
 import { Composition } from "remotion";
-import { ArticleCardDemo } from "./ArticleCardDemo";
-import { ArticleCardOverlaySchema } from "./effects";
+import { ArticleCardOverlay, ArticleCardOverlaySchema } from "./effects";
 
 import { default as CountdownTimer, CountdownTimerSchema } from "./effects/CountdownTimer";
 
@@ -12,9 +11,9 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="ArticleCardDemo"
-        component={ArticleCardDemo}
-        durationInFrames={78 * 25}
+        id="ArticleCard"
+        component={ArticleCardOverlay}
+        durationInFrames={15 * 25}
         fps={25}
         width={720}
         height={1280}
@@ -23,20 +22,18 @@ export const RemotionRoot: React.FC = () => {
           fps: 25,
           cards: [
             {
-              title:
-                "Fatal EV crash in Chinatown — weight and instant torque are the real dangers",
-              body: "The weight difference between EVs and traditional cars is staggering. A typical EV weighs around 2,200 kg due to the battery pack, compared to ~1,400 kg for an equivalent ICE car. Combined with 100% torque instantly available from a standstill, the kinetic energy in a collision is devastating. This isn't about driver error alone — it's physics.",
-              flair: "Discussion",
+              title: "Breaking: Tech layoffs surge across Southeast Asia",
+              body: "Major tech companies in the region have announced significant workforce reductions, affecting thousands of employees across Singapore, Indonesia, and Vietnam.",
+              flair: "News",
               source: {
-                platform: "reddit",
-                author: "u/sg_driver_2024",
-                subreddit: "r/drivingsg",
-                timestamp: "14h ago",
+                platform: "news",
+                author: "Tech in Asia",
+                timestamp: "2h ago",
               },
-              startMs: 3000,
-              endMs: 18000,
+              startMs: 1000,
+              endMs: 12000,
               enterAnimation: "slide-up",
-              exitAnimation: "slide-down",
+              exitAnimation: "fade",
               y: 0.38,
               marginX: 24,
               titleSize: 30,
@@ -44,66 +41,18 @@ export const RemotionRoot: React.FC = () => {
               sourceSize: 18,
               highlights: [
                 {
-                  phrase: "fatal",
+                  phrase: "layoffs surge",
                   style: "sweep",
                   color: "#FF4444",
-                  startMs: 5000,
-                  durationMs: 400,
-                },
-                {
-                  phrase: "weight difference",
-                  style: "sweep",
-                  color: "#FF8C00",
-                  startMs: 7500,
+                  startMs: 3000,
                   durationMs: 500,
                 },
                 {
-                  phrase: "2,200 kg",
+                  phrase: "thousands of employees",
                   style: "underline",
                   color: "#FF8C00",
-                  startMs: 9500,
-                  durationMs: 400,
-                },
-                {
-                  phrase: "100% torque instantly",
-                  style: "sweep",
-                  color: "#FF4444",
-                  startMs: 12000,
-                  durationMs: 600,
-                },
-              ],
-            },
-            {
-              title: "Speed camera footage shows moment of impact",
-              body: "Authorities released dashcam footage showing the vehicle accelerating through the pedestrian crossing. Witnesses reported no braking sounds before impact. The silent nature of EVs has reignited debate about mandatory low-speed warning sounds.",
-              source: {
-                platform: "news",
-                author: "CNA",
-                timestamp: "8h ago",
-              },
-              startMs: 22000,
-              endMs: 35000,
-              enterAnimation: "fade",
-              exitAnimation: "fade",
-              y: 0.42,
-              marginX: 24,
-              titleSize: 30,
-              bodySize: 26,
-              sourceSize: 18,
-              highlights: [
-                {
-                  phrase: "no braking sounds",
-                  style: "sweep",
-                  color: "#FF4444",
-                  startMs: 26000,
+                  startMs: 6000,
                   durationMs: 500,
-                },
-                {
-                  phrase: "silent nature of EVs",
-                  style: "underline",
-                  color: "#2196F3",
-                  startMs: 29000,
-                  durationMs: 600,
                 },
               ],
             },
