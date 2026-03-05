@@ -11,14 +11,18 @@ import { default as AnimatedBarChart, AnimatedBarChartSchema } from "./effects/A
 
 import { default as TestComponent, TestComponentSchema } from "./effects/TestComponent";
 
+import { default as AnimatedList, schema as AnimatedListSchema } from "./effects/AnimatedList";
+
+import { default as GraphAnimations, graphSchema as graphSchema } from "./effects/GraphAnimations";
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
         id="ArticleCard"
         component={ArticleCardOverlay}
-        durationInFrames={15 * 25}
-        fps={25}
+        durationInFrames={250}
+        fps={30}
         width={720}
         height={1280}
         schema={ArticleCardOverlaySchema}
@@ -134,6 +138,26 @@ export const RemotionRoot: React.FC = () => {
         width={720}
         height={1280}
         schema={AnimatedBarChartSchema}
+        defaultProps={{
+          data: [
+            { label: "Q1", value: 100, color: "#3B82F6" },
+            { label: "Q2", value: 150, color: "#10B981" },
+            { label: "Q3", value: 120, color: "#F59E0B" },
+            { label: "Q4", value: 180, color: "#EF4444" },
+            { label: "Q5", value: 90, color: "#8B5CF6" },
+          ],
+          animationDelay: 0.5,
+          barAnimationDuration: 2,
+          showValues: true,
+          showGrid: true,
+          title: "Animated Bar Chart",
+          titleSize: 36,
+          labelSize: 16,
+          valueSize: 14,
+          backgroundColor: "#1F2937",
+          textColor: "#FFFFFF",
+          gridColor: "rgba(255, 255, 255, 0.1)",
+        }}
       />
       <Composition
         id="TestComponent"
@@ -149,6 +173,35 @@ export const RemotionRoot: React.FC = () => {
           color: "#ffffff",
           animationSpeed: 1,
         }}
+      />
+      <Composition
+        id="AnimatedList"
+        component={AnimatedList}
+        durationInFrames={300}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={AnimatedListSchema}
+        defaultProps={{
+          backgroundColor: "#2B3FF0",
+          textColor: "#FFFFFF",
+          words: ["buy", "use", "monetize"],
+          arrowColor: "#FFFFFF",
+        }}
+      />
+      <Composition
+        id="GraphAnimations"
+        component={GraphAnimations}
+        durationInFrames={300}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={graphSchema}
+        defaultProps={{
+  "scene1Duration": 9,
+  "scene2Duration": 13,
+  "scene3Duration": 8
+}}
       />
     </>
   );
