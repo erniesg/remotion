@@ -13,7 +13,7 @@ import { default as TestComponent, TestComponentSchema } from "./effects/TestCom
 
 import { default as AnimatedList, schema as AnimatedListSchema } from "./effects/AnimatedList";
 
-import { default as GraphAnimations, graphSchema as graphSchema } from "./effects/GraphAnimations";
+import { default as GraphAnimations, graphSchema as GraphAnimationsSchema } from "./effects/GraphAnimations";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -21,46 +21,49 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="ArticleCard"
         component={ArticleCardOverlay}
-        durationInFrames={250}
+        durationInFrames={300}
         fps={30}
         width={720}
         height={1280}
         schema={ArticleCardOverlaySchema}
         defaultProps={{
-          fps: 25,
           cards: [
             {
-              title: "Breaking: Tech layoffs surge across Southeast Asia",
-              body: "Major tech companies in the region have announced significant workforce reductions, affecting thousands of employees across Singapore, Indonesia, and Vietnam.",
-              flair: "News",
+              title: "Breaking News: Important Update",
+              body: "This is a sample article with some important information that needs to be highlighted. The key points will be emphasized using text highlighting features.",
               source: {
                 platform: "news",
-                author: "Tech in Asia",
-                timestamp: "2h ago",
+                author: "News Reporter",
+                timestamp: "2 hours ago",
               },
               startMs: 1000,
-              endMs: 12000,
-              enterAnimation: "slide-up",
-              exitAnimation: "fade",
-              y: 0.38,
-              marginX: 24,
-              titleSize: 30,
-              bodySize: 26,
-              sourceSize: 18,
+              endMs: 8000,
+              y: 0.3,
+              marginX: 40,
+              titleSize: 32,
+              bodySize: 24,
+              sourceSize: 16,
               highlights: [
                 {
-                  phrase: "layoffs surge",
+                  phrase: "important information",
                   style: "sweep",
-                  color: "#FF4444",
-                  startMs: 3000,
-                  durationMs: 500,
+                  color: "#FF8C00",
+                  startMs: 2500,
+                  durationMs: 800,
                 },
                 {
-                  phrase: "thousands of employees",
+                  phrase: "key points",
                   style: "underline",
-                  color: "#FF8C00",
-                  startMs: 6000,
-                  durationMs: 500,
+                  color: "#32CD32",
+                  startMs: 4000,
+                  durationMs: 600,
+                },
+                {
+                  phrase: "text highlighting",
+                  style: "box",
+                  color: "#FF69B4",
+                  startMs: 5500,
+                  durationMs: 700,
                 },
               ],
             },
@@ -196,12 +199,7 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={720}
         height={1280}
-        schema={graphSchema}
-        defaultProps={{
-  "scene1Duration": 9,
-  "scene2Duration": 13,
-  "scene3Duration": 8
-}}
+        schema={GraphAnimationsSchema}
       />
     </>
   );
