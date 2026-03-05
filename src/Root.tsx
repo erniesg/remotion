@@ -6,6 +6,10 @@ import { ArticleCardOverlaySchema } from "./effects";
 
 import { default as CountdownTimer, CountdownTimerSchema } from "./effects/CountdownTimer";
 
+import { default as TypewriterText, TypewriterTextSchema } from "./effects/TypewriterText";
+
+import { default as TextReveal, TextRevealSchema } from "./effects/TextReveal";
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -133,6 +137,60 @@ export const RemotionRoot: React.FC = () => {
         width={720}
         height={1280}
         schema={CountdownTimerSchema}
+        defaultProps={{
+          startFrom: 10,
+          circleSize: 200,
+          fontSize: 80,
+          pulseIntensity: 0.3,
+          position: "center" as const,
+          offsetX: 0,
+          offsetY: 0,
+        }}
+      />
+      <Composition
+        id="TypewriterText"
+        component={TypewriterText}
+        durationInFrames={300}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={TypewriterTextSchema}
+        defaultProps={{
+          text: "Breaking News",
+          fontSize: 80,
+          fontWeight: "bold" as const,
+          textColor: "#ffffff",
+          backgroundColor: "transparent",
+          typeSpeed: 0.8,
+          showCursor: true,
+          cursorColor: "#ffffff",
+          position: "center" as const,
+          offsetX: 0,
+          offsetY: 0,
+        }}
+      />
+      <Composition
+        id="TextReveal"
+        component={TextReveal}
+        durationInFrames={300}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={TextRevealSchema}
+        defaultProps={{
+          text: "Breaking News",
+          fontSize: 80,
+          fontWeight: "bold",
+          textColor: "#ffffff",
+          backgroundColor: "transparent",
+          typeSpeed: 0.15,
+          showCursor: true,
+          cursorColor: "#ffffff",
+          position: "center",
+          offsetX: 0,
+          offsetY: 0,
+          startDelay: 0.5,
+        }}
       />
     </>
   );
