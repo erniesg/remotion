@@ -47,8 +47,8 @@ export default function TypewriterText({
   const charactersToShow = Math.floor(timeInSeconds / typeSpeed);
   const displayText = text.substring(0, Math.min(charactersToShow, text.length));
   
-  // Cursor blink animation (blinks every 0.5 seconds)
-  const cursorOpacity = Math.sin(frame * 0.2) > 0 ? 1 : 0;
+  // Cursor blink animation (blinks faster - every 0.25 seconds instead of 0.5)
+  const cursorOpacity = Math.sin(frame * 0.4) > 0 ? 1 : 0;
   
   // Show cursor only while typing or if showCursor is true and typing is done
   const shouldShowCursor = showCursor && (

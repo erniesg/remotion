@@ -138,11 +138,11 @@ export const RemotionRoot: React.FC = () => {
         height={1280}
         schema={CountdownTimerSchema}
         defaultProps={{
-          startFrom: 10,
-          circleSize: 200,
-          fontSize: 80,
+          startFrom: 5,
+          circleSize: 150,
+          fontSize: 60,
           pulseIntensity: 0.3,
-          position: "center" as const,
+          position: "top-center",
           offsetX: 0,
           offsetY: 0,
         }}
