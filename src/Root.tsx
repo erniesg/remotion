@@ -1,8 +1,10 @@
-import { Composition } from "remotion";
+import { Composition, Folder } from "remotion";
 import { MyComp } from "./MyComp";
 import { EmojiOverlayDemo } from "./EmojiOverlayDemo";
 import { ArticleCardDemo } from "./ArticleCardDemo";
 import { ArticleCardOverlaySchema } from "./effects";
+
+import { default as CountdownTimer, CountdownTimerSchema } from "./effects/CountdownTimer";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -122,6 +124,15 @@ export const RemotionRoot: React.FC = () => {
             },
           ],
         }}
+      />
+      <Composition
+        id="CountdownTimer"
+        component={CountdownTimer}
+        durationInFrames={300}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={CountdownTimerSchema}
       />
     </>
   );
