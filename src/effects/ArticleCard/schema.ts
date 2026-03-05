@@ -58,7 +58,7 @@ export const ArticleCardSchema = z.object({
 
 /** Full composition props */
 export const ArticleCardOverlaySchema = z.object({
-  videoSrc: z.string(),
+  videoSrc: z.string().optional(),
   cards: z.array(ArticleCardSchema),
   fps: z.number().default(25),
 });

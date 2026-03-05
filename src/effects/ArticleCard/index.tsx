@@ -308,11 +308,13 @@ export const ArticleCardOverlay: React.FC<ArticleCardOverlayProps> = ({
   const { fps, width, height } = useVideoConfig();
 
   return (
-    <AbsoluteFill>
-      <OffthreadVideo
-        src={videoSrc}
-        style={{ width, height, objectFit: "cover" }}
-      />
+    <AbsoluteFill style={{ backgroundColor: "#1a1a2e" }}>
+      {videoSrc && (
+        <OffthreadVideo
+          src={videoSrc}
+          style={{ width, height, objectFit: "cover" }}
+        />
+      )}
       {cards.map((card, i) => (
         <CardRenderer
           key={i}

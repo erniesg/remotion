@@ -1,6 +1,4 @@
-import { Composition, Folder } from "remotion";
-import { MyComp } from "./MyComp";
-import { EmojiOverlayDemo } from "./EmojiOverlayDemo";
+import { Composition } from "remotion";
 import { ArticleCardDemo } from "./ArticleCardDemo";
 import { ArticleCardOverlaySchema } from "./effects";
 
@@ -14,22 +12,6 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="MyComp"
-        component={MyComp}
-        durationInFrames={150}
-        fps={30}
-        width={1080}
-        height={1920}
-      />
-      <Composition
-        id="EmojiOverlayDemo"
-        component={EmojiOverlayDemo}
-        durationInFrames={78 * 25}
-        fps={25}
-        width={720}
-        height={1280}
-      />
-      <Composition
         id="ArticleCardDemo"
         component={ArticleCardDemo}
         durationInFrames={78 * 25}
@@ -38,7 +20,6 @@ export const RemotionRoot: React.FC = () => {
         height={1280}
         schema={ArticleCardOverlaySchema}
         defaultProps={{
-          videoSrc: "tiktok_dailytoast_7606345004319116564.mp4",
           fps: 25,
           cards: [
             {

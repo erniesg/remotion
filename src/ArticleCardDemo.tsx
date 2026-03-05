@@ -7,7 +7,7 @@ export const ArticleCardDemo: React.FC<ArticleCardOverlayProps> = (props) => {
   return (
     <ArticleCardOverlay
       {...props}
-      videoSrc={staticFile(props.videoSrc)}
+      videoSrc={props.videoSrc ? staticFile(props.videoSrc) : undefined}
     />
   );
 };
