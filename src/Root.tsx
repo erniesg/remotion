@@ -7,6 +7,10 @@ import { default as TypewriterText, TypewriterTextSchema } from "./effects/Typew
 
 import { default as TextReveal, TextRevealSchema } from "./effects/TextReveal";
 
+import { default as AnimatedBarChart, AnimatedBarChartSchema } from "./effects/AnimatedBarChart";
+
+import { default as TestComponent, TestComponentSchema } from "./effects/TestComponent";
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
@@ -102,24 +106,48 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="TextReveal"
         component={TextReveal}
-        durationInFrames={300}
-        fps={30}
+        durationInFrames={100}
+        fps={25}
         width={720}
         height={1280}
         schema={TextRevealSchema}
         defaultProps={{
-          text: "Breaking News",
-          fontSize: 80,
+          text: "WAR IN IRAN!!!",
+          fontSize: 60,
           fontWeight: "bold",
-          textColor: "#ffffff",
+          textColor: "#ff0000",
           backgroundColor: "transparent",
-          typeSpeed: 0.15,
+          typeSpeed: 0.3,
           showCursor: true,
-          cursorColor: "#ffffff",
+          cursorColor: "#ff0000",
           position: "center",
           offsetX: 0,
           offsetY: 0,
-          startDelay: 0.5,
+          startDelay: 0,
+        }}
+      />
+      <Composition
+        id="AnimatedBarChart"
+        component={AnimatedBarChart}
+        durationInFrames={100}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={AnimatedBarChartSchema}
+      />
+      <Composition
+        id="TestComponent"
+        component={TestComponent}
+        durationInFrames={300}
+        fps={30}
+        width={720}
+        height={1280}
+        schema={TestComponentSchema}
+        defaultProps={{
+          message: "Test Component",
+          fontSize: 48,
+          color: "#ffffff",
+          animationSpeed: 1,
         }}
       />
     </>
