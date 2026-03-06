@@ -65,7 +65,7 @@ const HighlightSpan: React.FC<{
             style={{
               position: "absolute",
               left: 0,
-              bottom: -1,
+              bottom: 0,
               height: underlineH,
               width: `${progress * 100}%`,
               backgroundColor: highlight.color,
@@ -109,8 +109,9 @@ const HighlightSpan: React.FC<{
     <span
       style={{
         position: "relative",
-        display: "inline",
+        display: "inline-block",
         fontWeight: progress > 0 ? 700 : 400,
+        paddingBottom: highlight.style === "underline" ? 6 : 0,
       }}
     >
       {renderHighlightBg()}
